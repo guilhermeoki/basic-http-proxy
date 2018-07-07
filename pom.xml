@@ -17,4 +17,27 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  	<dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-server</artifactId>
+    	<version>9.4.11.v20180605</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-servlet</artifactId>
+    	<version>9.4.11.v20180605</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.eclipse.jetty</groupId>
+	    <artifactId>jetty-client</artifactId>
+	    <version>9.4.11.v20180605</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.eclipse.jetty</groupId>
+	    <artifactId>jetty-proxy</artifactId>
+	    <version>9.4.11.v20180605</version>
+	</dependency>
+	
+  </dependencies>  
 </project>
