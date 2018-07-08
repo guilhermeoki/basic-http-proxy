@@ -30,7 +30,7 @@ public class ReverseProxyHandler extends AbstractHandler {
 		ContentResponse content;
 		if (request.getMethod().equals("GET") && routes.containsKey(requestServerName)) {
 			try {
-				content = httpClient.GET(routes.get(requestServerName)+request.getRequestURI());
+				content = httpClient.GET(routes.get(requestServerName)+target);
 				baseRequest.setHandled(true);
 				response.getOutputStream().write(content.getContent());
 				response.setStatus(content.getStatus());
