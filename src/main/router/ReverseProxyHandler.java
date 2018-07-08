@@ -39,17 +39,17 @@ public class ReverseProxyHandler extends AbstractHandler {
 		}
 	}
 
-	public boolean isMethodGet(HttpServletRequest request) {
+	private boolean isMethodGet(HttpServletRequest request) {
 		if (request.getMethod().equals("GET"))
 			return true;
 		return false;
 	}
 
-	public boolean hasRoute(String vhost) {
+	private boolean hasRoute(String vhost) {
 		return routes.containsKey(vhost);
 	}
 
-	public ContentResponse sendGetRequest(String backend, String target) throws InterruptedException, ExecutionException, TimeoutException {
+	private ContentResponse sendGetRequest(String backend, String target) throws InterruptedException, ExecutionException, TimeoutException {
 		ContentResponse content = httpClient.GET(backend+target);
 		return content;
 
