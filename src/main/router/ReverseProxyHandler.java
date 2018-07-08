@@ -56,6 +56,7 @@ public class ReverseProxyHandler extends AbstractHandler {
 	}
 
 	public HttpServletResponse serveHttp(ContentResponse content, HttpServletResponse response) throws IOException {
+		response.setContentType(content.getMediaType());
 		response.getOutputStream().write(content.getContent());
 		response.setStatus(content.getStatus());
 		return response;
