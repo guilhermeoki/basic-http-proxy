@@ -42,6 +42,10 @@ public class ReverseProxyServer {
 		this.server.start();
 		this.server.join();
 	}
+
+	public void stop() throws Exception {
+		this.server.stop();
+	}
 	
 	public void addRoute(String vhost, String backend) {
 		this.handler.addRoute(vhost,backend);
