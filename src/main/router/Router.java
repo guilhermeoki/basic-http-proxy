@@ -18,8 +18,7 @@ public class Router {
 	private static Server server;
 
 	public static void main(String[] args) throws Exception {
-		Map routes = new HashMap();
-
+		Map<String, String> routes = new HashMap<String, String>();
 
 		routes.put("test1.localdomain", "http://localhost:5001");
 		routes.put("test2.localdomain", "http://localhost:5002");
