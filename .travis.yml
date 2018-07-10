@@ -1,0 +1,12 @@
+language: java
+jdk: openjdk8
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: QlHMOsf0bjJeeuENudLDyw1gCJ6Q+57ai7D+MRwK2G28cR9FsRKiuYiEMR1+TzMT+oM6IgIe1dzA0L3YPTsoYWwUXua04D6KMT1PgE7Gwo0GfKhWqMHBA+l+cRiY1YejnXPu653VcN1/+Q8bzejUkLjRTHhhMyRdc3zPRxy6n9byacq42Ok4s75akI8fEpSqTnAmQtwXJSJpAuysPGkMdo4CzeXVPtUX7Q3lEubOnck91a3dujdSgO1DZ2gHg0BPbY+GyzQoBtSklfURpaZs142HVjqYNU6qBSMkDFBgJ5zLTYtoRvH0iBAu36Gm/05o1yKs8WS+jnwhHEvk1diUM0jh1u/EOv5OJCIoeeZOgf6yoznDrAHlbPwfEK8iDIw9H7YfuSQwoadFdl1E2JV26KU9v9/dHaOwbmPkHzQ9GTg6IPtHRzJMZ7KKL5EMMC6ffyT9MRv2xYnZTixrZZ0ncerWLCMYdL8EwMORyKzoZjs7vuhPcDIY6oMoG8Ev+uUOwtEdodY08eFI99ILCNC+RcMvCKtOm7yEoiFWu1BavTwMCr2+fcAq+8Aipy6Jk4ywuEb3j/TR91nCtzVFsmtlN1rioT0lbHtaaAAg8Q5C0ppdDeMj0Wrz8QmDXIJkO9i/WIoLXxyup6XthL1BZRo5J+5Ekx3DWMMCyS6iF12K4+A=
+  file_glob: true
+  file: target/*.jar
+  on:
+    repo: guilhermeoki/basic-http-proxy
+    tags: true
