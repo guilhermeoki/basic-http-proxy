@@ -1,7 +1,5 @@
 package main.router;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,10 +7,10 @@ import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
 
 public class ReverseProxyServer {
 	private static final String DEFAULT_KEYSTORE_PASSWORD = "changeit";
-	private static final String DEFAULT_KEYSTORE_PATH = "src/main/resources/keystore";
 	private static final int HTTP_PORT = 8080;
 	private static final int HTTPS_PORT = 8443;
 	
@@ -27,7 +25,6 @@ public class ReverseProxyServer {
 	private Map<String,String> routes;
 	private ReverseProxyHandler handler;
 	
-	private String keystorePath = DEFAULT_KEYSTORE_PATH;
 	private String keystorePassword = DEFAULT_KEYSTORE_PASSWORD;
 	private String KeyManagerPassword = DEFAULT_KEYSTORE_PASSWORD;
 	
@@ -72,24 +69,12 @@ public class ReverseProxyServer {
 		this.connectorHttps = getHTTPSConnector(sslContextFactory);
 		this.connectorHttps.setPort(port);
 	}
-	
-	private String getAbsoluteKeystorePath(String keystorePath) {
-		File keystoreFile = new File(keystorePath);
-        if (!keystoreFile.exists())
-			try {
-				throw new FileNotFoundException(keystoreFile.getAbsolutePath());
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-		return keystoreFile.getAbsolutePath();
-	}
 
 	private SslContextFactory getSSLContextFactory()
 	{
-		String absolutePath = getAbsoluteKeystorePath(keystorePath);
 		SslContextFactory sslContextFactory = new SslContextFactory();
 
-		sslContextFactory.setKeyStorePath(absolutePath);
+		sslContextFactory.setKeyStoreResource(newClassPathResource("keystore"));
 		sslContextFactory.setKeyStorePassword(keystorePassword);
 		sslContextFactory.setKeyManagerPassword(KeyManagerPassword);
 

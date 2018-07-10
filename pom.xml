@@ -5,8 +5,38 @@
   <version>1.0.0</version>
   <name>basic-http-proxy</name>
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
     <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
     <plugins>
+		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-assembly-plugin</artifactId>
+		    <executions>
+		        <execution>
+		            <phase>package</phase>
+		            <goals>
+		                <goal>single</goal>
+		            </goals>
+		            <configuration>
+		                <archive>
+		                <manifest>
+		                    <mainClass>
+		                        main.router.Router
+		                    </mainClass>
+		                </manifest>
+		                </archive>
+		                <descriptorRefs>
+		                    <descriptorRef>jar-with-dependencies</descriptorRef>
+		                </descriptorRefs>
+		            </configuration>
+		        </execution>
+		    </executions>
+		</plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
@@ -38,6 +68,10 @@
 	    <artifactId>jetty-proxy</artifactId>
 	    <version>9.4.11.v20180605</version>
 	</dependency>
-	
+	<dependency>
+	    <groupId>org.eclipse.jetty</groupId>
+	    <artifactId>jetty-util</artifactId>
+	    <version>9.4.11.v20180605</version>
+	</dependency>
   </dependencies>  
 </project>
