@@ -37,6 +37,9 @@ public class ReverseProxyServer {
 	
 	public void start() throws Exception {
 		this.server.start();
+	}
+
+	public void join() throws Exception {
 		this.server.join();
 	}
 
