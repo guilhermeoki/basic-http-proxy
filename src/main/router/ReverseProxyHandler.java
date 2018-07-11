@@ -17,9 +17,8 @@ public class ReverseProxyHandler extends AbstractHandler {
 	private HttpClient httpClient;
 	private Map<String,String> routes;
 
-	public ReverseProxyHandler(Map<String,String> routes) throws Exception {
-		this.httpClient = new HttpClient();
-		httpClient.start();
+	public ReverseProxyHandler(Map<String,String> routes, HttpClient httpClient) throws Exception {
+		this.httpClient = httpClient;
 		this.routes = routes;
 	}
 

@@ -3,6 +3,7 @@ package main.router;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -18,6 +19,7 @@ public class ReverseProxyServer {
 	private ServerConnector connectorHttp;
 	private ServerConnector connectorHttps;
 	private SslContextFactory sslContextFactory;
+	private HttpClient httpClient;
 	
 	private int httpPort = HTTP_PORT;
 	private int httpsPort = HTTPS_PORT;
@@ -31,7 +33,9 @@ public class ReverseProxyServer {
 	public ReverseProxyServer() throws Exception {
 		this.routes = new HashMap<String, String>();
 		this.server = new Server();
-		this.handler = new ReverseProxyHandler(routes);
+		this.httpClient = new HttpClient();
+		httpClient.start();
+		this.handler = new ReverseProxyHandler(routes, httpClient);
 		configServer();
 	}
 	
