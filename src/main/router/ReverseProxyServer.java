@@ -105,4 +105,20 @@ public class ReverseProxyServer {
 	public void setKeyManagerPassword(String keyManagerPassword) {
 		KeyManagerPassword = keyManagerPassword;
 	}
+
+	public int getHttpPort() {
+		return httpPort;
+	}
+
+	public void setHttpPort(int httpPort) {
+		this.httpPort = httpPort;
+	}
+
+	public int getHttpsPort() {
+		return httpsPort;
+	}
+
+	public void setHttpsPort(int httpsPort) {
+		this.httpsPort = httpsPort;
+	}
 }
