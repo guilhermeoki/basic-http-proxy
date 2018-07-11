@@ -36,10 +36,10 @@ public class ReverseProxyServer {
 		this.httpClient = new HttpClient();
 		httpClient.start();
 		this.handler = new ReverseProxyHandler(routes, httpClient);
-		configServer();
 	}
 	
 	public void start() throws Exception {
+		configServer();
 		this.server.start();
 	}
 
