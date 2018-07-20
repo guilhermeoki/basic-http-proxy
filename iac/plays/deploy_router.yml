@@ -1,0 +1,25 @@
+---
+- hosts: router
+  tasks:
+    - name: ensure router dir exists
+      file:
+        path: /usr/local/bin/router/
+        state: directory
+
+    - name: find jar artifact
+      find:
+        paths: /usr/local/bin/router/
+        patterns: "*.jar"
+      register: jar_files
+
+    - name: clean artifacts
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ jar_files.files }}"
+
+    - name: download router jar
+      get_url:
+        url: "https://github.com/guilhermeoki/basic-http-proxy/releases/download/v{{ router_release_version }}/basic-http-proxy-{{ router_release_version }}-jar-with-dependencies.jar"
+        dest: /usr/local/bin/router/basic-http-proxy.jar
+      
