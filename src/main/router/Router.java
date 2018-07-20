@@ -1,5 +1,7 @@
 package main.router;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Router {
 
@@ -7,8 +9,14 @@ public class Router {
 	public static void main(String[] args) {
 		try {
 			ReverseProxyServer reverseProxy = new ReverseProxyServer();
-			reverseProxy.addRoute("test1.localdomain", "http://localhost:5001");
-			reverseProxy.addRoute("test2.localdomain", "http://localhost:5002");
+
+			String data = System.getProperty("routes");
+			JSONArray routes = new JSONArray(data);
+			for (int i = 0; i < routes.length(); i++) {
+				JSONObject route = routes.getJSONObject(i);
+				reverseProxy.addRoute(route.getString("vhost"), route.getString("backend"));
+			}
+
 			reverseProxy.start();
 			reverseProxy.join();
 		} catch (Exception e) {
