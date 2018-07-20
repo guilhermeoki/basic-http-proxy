@@ -33,3 +33,9 @@ ansible-playbook --become iac/router.yaml -i inventories/<your_environment>/inve
 
 That installation set up basic-http-proxy running on 80 and 443 ports and an nginx instance running on ports 5001 and 5002.
 
+## TODO List
+
+- [ ] Set up a log library
+- [ ] Add backend healthcheck
+- [ ] Add management api to set routes dynamically
+- [ ] Add roundtrip for multiple hosts in backend
