@@ -17,7 +17,9 @@ mvn clean install
 
 ## How to run
 
-java -jar target/basic-http-proxy-1.0.1-jar-with-dependencies.jar
+```
+java -Droutes='[{"vhost": "test1.localdomain","backend":"http://localhost:5001"},{"vhost": "test2.localdomain","backend":"http://localhost:5002"}]' -jar target/basic-http-proxy-1.0.1-jar-with-dependencies.jar
+```
 
 ## How to install using Ansible
 
