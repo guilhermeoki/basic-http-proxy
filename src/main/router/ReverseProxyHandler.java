@@ -22,7 +22,7 @@ public class ReverseProxyHandler extends AbstractHandler {
 		this.routes = routes;
 	}
 
-	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) {
+	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String vhost = request.getServerName();
 		if (isMethodGet(request) && hasRoute(vhost)) {
 			try {
@@ -32,8 +32,14 @@ public class ReverseProxyHandler extends AbstractHandler {
 				serveHttp(content,response);
 
 				baseRequest.setHandled(true);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch(TimeoutException te) {
+				System.out.println("The client request timeout is expired.");
+			}
+			catch(ExecutionException ee) {
+				System.out.println("The request is aborted. The cause is"+ee.getCause().getMessage());
+			}
+			catch(InterruptedException ie) {
+				System.out.println("The http client thread was interrupted");
 			}
 		}
 	}

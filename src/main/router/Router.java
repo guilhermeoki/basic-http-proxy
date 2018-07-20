@@ -1,6 +1,7 @@
 package main.router;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Router {
@@ -19,8 +20,15 @@ public class Router {
 
 			reverseProxy.start();
 			reverseProxy.join();
-		} catch (Exception e) {
+		} catch (JSONException e) {
+			System.out.println("Error in the syntax of json args. The message is "+e.getMessage());
+		}
+		catch(NullPointerException ne) {
+			System.out.println("You need to pass the routes to start webserver");
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("Failed to start server");
 			e.printStackTrace();
 		}
 
