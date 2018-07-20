@@ -51,4 +51,11 @@
       with_items:
         - soft
         - hard
-
+    
+    - name: set jvm parameters
+      copy:
+        src: basic-http-proxy
+        dest: /usr/local/bin/router/
+        mode: 0755
+        owner: root
+        group: root
