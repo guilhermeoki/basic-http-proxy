@@ -1,0 +1,4 @@
+---
+- import_playbook: plays/configure_router.yml
+- import_playbook: plays/configure_backend.yml
+- import_playbook: plays/deploy_router.yml
