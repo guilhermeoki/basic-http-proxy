@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>basic-http-proxy</groupId>
   <artifactId>basic-http-proxy</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>basic-http-proxy</name>
   <build>
     <resources>
