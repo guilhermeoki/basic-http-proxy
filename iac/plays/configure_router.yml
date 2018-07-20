@@ -1,0 +1,54 @@
+---
+- hosts: router
+  tasks:
+    - name: install package dependencies
+      package: 
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - java-1.8.0-openjdk
+        - java-1.8.0-openjdk-devel
+        - wget
+        - tmux
+        - htop
+
+    - name: set kernel tuning profile
+      command: "tuned-adm profile throughput-performance"
+
+    - name: set kernel parameters
+      sysctl:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        state: present
+      with_items:
+        - name: net.core.rmem_max
+          value: 16777216
+        - name: net.core.wmem_max
+          value: 16777216
+        - name: net.ipv4.tcp_rmem
+          value: "4096 87380 16777216"
+        - name: net.ipv4.tcp_wmem
+          value: "4096 16384 16777216"
+        - name: net.core.somaxconn
+          value: 4096
+        - name: net.core.netdev_max_backlog
+          value: 16384
+        - name: net.ipv4.tcp_max_syn_backlog
+          value: 8192
+        - name: net.ipv4.tcp_syncookies
+          value: 1
+        - name: net.ipv4.ip_local_port_range
+          value: "5003 65535"
+        - name: net.ipv4.tcp_tw_recycle
+          value: 1
+          
+    - name: set limit of file descriptors
+      pam_limits:
+        domain: root
+        limit_type: "{{ item }}"
+        limit_item: nofile
+        value: 1000000
+      with_items:
+        - soft
+        - hard
+
